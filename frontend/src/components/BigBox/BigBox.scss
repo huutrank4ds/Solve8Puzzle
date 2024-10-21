@@ -8,7 +8,7 @@
     justify-content: center;
     align-items: center;
     justify-items: center;
-    border: 2px solid #000;
+    border: 0.5vh solid #000;
     border-radius: 10px;
     cursor: pointer;
     
@@ -18,18 +18,20 @@
         aspect-ratio: 1;
         text-align: center;
         align-content: center;
-        font-size: 4rem;
+        font-size: 7vh;
         user-select: none;
-        border: 2px solid #000;
+        border: 0.5vh solid #000;
         border-radius: 10px;
     }
     .big-box-number.none {
         background-color: #EFAF77;
+        color: rgba(0, 0, 0, 0); 
     }
 }
 
 .big-box-element.done {
     .big-box-number.none {
         border:none;
+        color: rgba(0, 0, 0, 0); 
     }
 }

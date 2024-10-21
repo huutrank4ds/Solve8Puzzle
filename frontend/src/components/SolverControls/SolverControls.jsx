@@ -5,24 +5,45 @@ import AlgorithmDropdown from "../AlgorithmDropdown/AlgorithmDropdown";
 import Button from "../Button/Button";
 import { AlgorithmProvider } from "./AlgorithmContext";
 import Tooltip from "../Tooltip/Tooltip";
+import { getFromLocalStorage } from "../../utils/localStorage";
 
 
 
-const SolverControls = ({ stateBigBox }) => {
+const SolverControls = ({ stateBigBox, handleSolve }) => {
     const [isAlgorithm, setIsAlgorithm] = useState(false);
     const [positionMouse, setPositionMouse] = useState({ x: 0, y: 0 });
     const [showTooltipStep, setShowTooltipStep] = useState(false);
     const [showTooltipSolve, setShowTooltipSolve] = useState(false);
-    const [hoverButton, setHoverButton] = useState('');
+    // const [hoverButton, setHoverButton] = useState('');
     const [algorithmSelected, setAlgorithmSelected] = useState('');
-    const navigate = useNavigate();
+    const navigate = useNavigate(); 
+    const [solution, setSolution] = useState(null);
+    const bigBoxFirstState = getFromLocalStorage('bigBoxFirstState', []);
+    const bigBoxGoalState = getFromLocalStorage('bigBoxGoalState', []);
 
     const handleNavigateToShowstep = () => {
         navigate(`/showstep?algorithm=${algorithmSelected}`);
     };
 
     const handleNavigateToSolve = () => {
-        navigate('/solve');
+        fetch('http://127.0.0.1:8000/solve', {
+            method: 'POST',  // HTTP method
+            headers: {
+                'Content-Type': 'application/json',  // Đặt tiêu đề để chỉ định kiểu dữ liệu gửi
+            },
+            body: JSON.stringify({  // Biến đổi dữ liệu thành chuỗi JSON
+                firstState: bigBoxFirstState,
+                goalState: bigBoxGoalState
+            })
+        })
+        .then(response => response.json())  // Parse JSON từ phản hồi
+        .then(data => {
+            setSolution(Object.values(data));  // Lưu lại giải pháp từ API
+            navigate('/solve', { state: {solution: Object.values(data) }});  // Điều hướng đến trang kết quả
+        })
+        .catch(error => {
+            console.error("There was an error solving the puzzle!", error);
+        });
     };
 
     const handleAlgorithmSelect = (value) => {
@@ -92,6 +113,7 @@ const SolverControls = ({ stateBigBox }) => {
                 onMouseMove={handleMouseMove}
                 onMouseEnter={() => handleMouseEnter('solve')}
                 onMouseLeave={() => handleMouseLeave('solve')}
+                onClick={() => handleSolve}
             >
                 <Button className='solve-button' onClick={handleNavigateToSolve} disabled={!stateBigBox}>Solve</Button>
                 {showTooltipSolve && !stateBigBox && (

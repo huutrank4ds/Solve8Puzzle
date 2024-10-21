@@ -4,7 +4,7 @@ import './SmallBox.scss';
 const SmallBox = ({number, onNumberClick}) => {
     return (
         <div
-            className= {`small-box-number ${number === '' ? 'none' : number}`}
+            className= {`small-box-number ${number === '0' ? 'none' : number}`}
             onClick={() => onNumberClick(number)}
         >
             {number}

@@ -4,17 +4,9 @@ import SolverControls from "../../components/SolverControls/SolverControls";
 import BigBox from "../../components/BigBox/BigBox";
 import SmallBox from "../../components/SmallBox/SmallBox";
 import ResetBigBox from "../../components/ResetBigBox/ResetBigBox";
+import { saveToLocalStorage, getFromLocalStorage } from "../../utils/localStorage";
 
-const saveToLocalStorage = (key, value) => {
-    localStorage.setItem(key, JSON.stringify(value));
-};
-
-const getFromLocalStorage = (key, defaultValue) => {
-    const storedValue = localStorage.getItem(key);
-    return storedValue ? JSON.parse(storedValue) : defaultValue;
-};
-
-const defaultSmallNumberlist = ['', 1, 2, 3, 4, 5, 6, 7, 8];
+const defaultSmallNumberlist = ['0', '1', '2', '3', '4', '5', '6', '7', '8'];
 
 const HomePage = () => {
     const [bigBoxFirstState, setBigBoxFirstState] = useState(() => getFromLocalStorage('bigBoxFirstState', []));
@@ -24,6 +16,7 @@ const HomePage = () => {
     const [smallNumberBoxsFirstState, setSmallNumberBoxsFirstState] = useState(() => getFromLocalStorage('smallNumberBoxsFirstState', defaultSmallNumberlist));
     const [smallNumberBoxsGoalState, setSmallNumberBoxsGoalState] = useState(() => getFromLocalStorage('smallNumberBoxsGoalState', defaultSmallNumberlist));
     const [stateBigBox, setStateBigBox] = useState(false);
+    const [solution, setSolution] = useState(null);
 
     useEffect(() => {
         saveToLocalStorage('bigBoxFirstState', bigBoxFirstState);
@@ -105,18 +98,10 @@ const HomePage = () => {
         }
     };
 
-    const isNumberUsedFirstState = (number) => {
-        return bigBoxFirstState.includes(number);
-    };
-
-    const isNumberUsedGoalState = (number) => {
-        return bigBoxGoalState.includes(number);
-    };
-
     return (
         <div className="home-container">
             <div className="solve-controls-box">
-                <SolverControls stateBigBox={stateBigBox}/>
+                <SolverControls stateBigBox={stateBigBox} />
             </div>
             <div>
                 <div className="big-box-container">
@@ -155,17 +140,15 @@ const HomePage = () => {
                 <div className="small-box-list-container">
                     {isSelectFirstState && smallNumberBoxsFirstState.map((smallBox, index) => (
                         <SmallBox
-                            className={`small-box-first-state-list ${smallBox === '' ? 'none' : smallBox}`}
+                            className={`small-box-first-state-list ${smallBox === '0' ? 'none' : smallBox}`}
                             number={smallBox}
-                            isUsed={isNumberUsedFirstState(smallBox)}
                             onNumberClick={handleNumberClick}
                         />
                     ))}
                     {isSelectGoalState && smallNumberBoxsGoalState.map((smallBox, index) => (
                         <SmallBox
-                            className={`small-box-goal-state-list ${smallBox === '' ? 'none' : smallBox}`}
+                            className={`small-box-goal-state-list ${smallBox === '0' ? 'none' : smallBox}`}
                             number={smallBox}
-                            isUsed={isNumberUsedFirstState(smallBox)}
                             onNumberClick={handleNumberClick}
                         />
                     ))}

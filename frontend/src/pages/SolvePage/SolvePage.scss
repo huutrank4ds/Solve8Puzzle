@@ -1,10 +1,39 @@
-.header-solve-page {
-    display: flex;
-    justify-content: right;
-    align-items: center;
-    margin-bottom: 20px;    
-    .pause-play-button {
-        margin-top: 10px;
-        margin-right: 30px;
+.solve-page {
+    
+    .header-solve-page {
+        display: flex;
+        justify-content: right;
+        align-items: center;
+        margin-bottom: 20px;  
+        user-select: none;  
+        .pause-play-button {
+            margin-top: 10px;
+            margin-right: 30px;
+        }
+    }
+    .big-box-solve-container {
+        margin: 10vh auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: fit-content;
     }
 }
+
+// .header-solve-page {
+//     display: flex;
+//     justify-content: right;
+//     align-items: center;
+//     margin-bottom: 20px;    
+//     .pause-play-button {
+//         margin-top: 10px;
+//         margin-right: 30px;
+//     }
+// }
+
+// .big-box-solve-container {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     transform: scale(1.5);
+// }
