@@ -5,7 +5,7 @@ import ResetIcon from '../../assets/icons/reset-icon.png';
 const ResetBigBox = ({ onClick }) => {
     return (
         <div className="reset-big-box" onClick={onClick}>
-            <img src={ResetIcon}/>
+            <img className="image-reset-icon" src={ResetIcon}/>
         </div>
     );
 };

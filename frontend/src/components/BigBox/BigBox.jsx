@@ -1,7 +1,7 @@
 import React from "react";
 import './BigBox.scss';
 
-const BigBox = ({numbers, onClick}) => {
+const BigBox = ({numbers, onClick, onRemoveNumberClick}) => {
     return (
         <div 
             className={`big-box-element ${numbers.length == 9 ? 'done' : ''}`}
@@ -11,6 +11,7 @@ const BigBox = ({numbers, onClick}) => {
                 <div
                     index={index}
                     className={`big-box-number ${num === '' ? 'none' : num}`}
+                    onClick={() => onRemoveNumberClick(num)}
                 >
                     {num}
                 </div>

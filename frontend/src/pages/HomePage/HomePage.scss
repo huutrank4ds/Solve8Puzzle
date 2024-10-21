@@ -27,14 +27,44 @@
         align-items: center;
         display: flex;
         flex-direction: column;
-        
-        .big-box-name {
-            font-size: 2rem;
-            justify-content: center;
-            display: block;
-            margin-bottom: 20px;
-            user-select: none;
-        }
+    }
+}
+
+// .label-reload-big-box {
+//     display: flex;
+//     margin-bottom: 20px;
+//     justify-content: center;
+//     align-items: center;
+//     gap: 40px;
+//     .big-box-name {
+//         font-size: 2rem;
+//         justify-content: center;
+//         user-select: none;
+//         display: inline-block;
+//     }
+// }
+
+.label-reload-big-box {
+    position: relative; 
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    .reload-first-state{
+        position: absolute;
+        top: 50%;
+        width: 20px;
+        height: 20px;   
+      }
+    
+}
+
+.big-box-name-container {
+    position: relative;
+    .big-box-name {
+        text-align: center;
+        font-size: 2rem;
+        justify-content: center;
+        user-select: none;
     }
 }
 
@@ -43,45 +73,34 @@
         position: relative;
         z-index: 1;
     }
-    .big-box-name:before, .big-box-name:after{
+    .big-box-name:after{
         content: '';
         position: absolute;
-        top: 50%;
-        width: 5px; /* Độ dày của viền sáng */
-        height: 80%;
+        bottom: -5px;
+        left: 0;
+        width: 100%; /* Độ dày của viền sáng */
+        height: 5px;
         background-color: rgba(0, 255, 0, 0.6); /* Màu của ánh sáng */
-        box-shadow: 0 0 8px rgba(0, 255, 0, 0.8); /* Hiệu ứng sáng */
+        box-shadow: 0 -2px 7px rgba(0, 255, 0, 0.4); /* Hiệu ứng sáng */
         transform: translateY(-50%);
-        animation: glowing 1.5s infinite alternate; /* Hiệu ứng nhấp nháy */
-    }
-    .big-box-name:before {
-        left: -10px;
-    }
-    .big-box-name:after {
-        right: -10px;
     }
 }
 
 .goal-state-box.selected {
     .big-box-name {
         position: relative;
+        z-index: 1;
     }
-    .big-box-name:before, .big-box-name:after{
+    .big-box-name:after{
         content: '';
         position: absolute;
-        top: 50%;
-        width: 5px; /* Độ dày của viền sáng */
-        height: 80%;
+        bottom: -5px;
+        left: 0;
+        width: 100%; /* Độ dày của viền sáng */
+        height: 5px;
         background-color: rgba(0, 255, 0, 0.6); /* Màu của ánh sáng */
-        box-shadow: 0 0 8px rgba(0, 255, 0, 0.8); /* Hiệu ứng sáng */
+        box-shadow: 0 -2px 7px rgba(0, 255, 0, 0.4); /* Hiệu ứng sáng */
         transform: translateY(-50%);
-        animation: glowing 1.5s infinite alternate; /* Hiệu ứng nhấp nháy */
-    }
-    .big-box-name:before {
-        left: -10px;
-    }
-    .big-box-name:after {
-        right: -10px;
     }
 }
 
