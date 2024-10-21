@@ -1,0 +1,43 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.solver-controls {
+    margin: auto;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    gap: 30px;
+    
+    .solve-button{
+        background-color: #4BF07D;
+    }
+
+    .solve-button:disabled {
+        background-color: #70CF8D;
+        cursor: not-allowed;
+    }
+}
+
+.button-tooltip-container{
+    position: relative;
+    display: inline-block;
+    .showstep-button{
+        background-color: #43CAFF;
+    }
+    .showstep-button:disabled {
+        background-color: #6DB6D2;
+        cursor: not-allowed;
+    }
+    .showstep-button:disabled {
+        background-color: #6DB6D2;
+        cursor: not-allowed;
+    }
+    
+}
+
+
+

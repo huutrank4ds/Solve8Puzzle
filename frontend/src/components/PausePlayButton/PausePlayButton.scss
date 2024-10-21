@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.pause-play-button {
+    display: flex;
+    width: 70px;
+    background-color: rgba($color: #ffffff, $alpha: 0);
+    border: none;
+    cursor: pointer;
+    user-select: none;
+    .image-pause-play-button {
+        width: 100%;
+        margin: 0;
+        box-sizing: border-box;
+    }
+}

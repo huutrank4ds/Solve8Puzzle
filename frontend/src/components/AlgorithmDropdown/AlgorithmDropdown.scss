@@ -1,0 +1,51 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.custom-select-container {
+    border: None;
+    font-size: 15px;
+    display: block;
+    user-select: none;
+    width: 300px;
+    position: relative;
+    .custom-select-header {
+        background-color: white;
+        border: 1px solid black;
+        border-radius: 8px;
+        padding: 5px 20px;
+        font-size: 15px;
+        cursor: pointer;
+        align-items: center;
+        justify-content: space-between;
+        display: flex;
+        .arrow-icon {
+           height: 40%;
+        }
+        .arrow-icon.open {
+            transform: scaleY(-1);
+        };
+    }
+    .custom-select-options{
+        background-color: white;
+        border: 1px solid black;
+        border-radius: 8px;
+        padding: 10px 10px;
+        list-style-type: None;
+        margin-top: 10px;
+        position: absolute;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .custom-select-option{
+        padding: 10px;
+        cursor: pointer;
+        &:hover{
+            background-color: #f0f0f0;
+        }
+    }
+}
+
+
+
