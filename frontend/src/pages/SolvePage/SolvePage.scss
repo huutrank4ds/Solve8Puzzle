@@ -1,5 +1,4 @@
 .solve-page {
-    
     .header-solve-page {
         display: flex;
         justify-content: right;
@@ -20,20 +19,28 @@
     }
 }
 
-// .header-solve-page {
-//     display: flex;
-//     justify-content: right;
-//     align-items: center;
-//     margin-bottom: 20px;    
-//     .pause-play-button {
-//         margin-top: 10px;
-//         margin-right: 30px;
-//     }
-// }
-
-// .big-box-solve-container {
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     transform: scale(1.5);
-// }
+.header-solve-page {
+    position: relative;
+    .progress-bar {
+        position: absolute;
+        width: 50vw;
+        top: 50%;
+        left: 25vw;
+        height: 10px;
+        background-color: #f3f3f3;
+        border-radius: 5px;
+    }
+    .number-step {
+        position: absolute;
+        top: 30%;
+        left: 80vw;
+        width: 40px;
+        aspect-ratio: 1;
+        font-size: 20px;
+        background-color: blue;
+        text-align: center;
+        align-content: center;
+        color: white;
+        border-radius: 50%;
+    }
+}

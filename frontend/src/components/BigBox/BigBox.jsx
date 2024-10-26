@@ -11,7 +11,7 @@ const BigBox = ({numbers, onClick, onRemoveNumberClick, bigBoxStyle, smallBoxSty
         >
             {numbers.map((num, index) => (
                 <div
-                    index={index}
+                    key={index}
                     className={`big-box-number ${num === '0' ? 'none' : num}`}
                     onClick={() => onRemoveNumberClick(num)}
                     style={smallBoxStyle ? smallBoxStyle : null}

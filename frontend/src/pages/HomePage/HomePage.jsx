@@ -140,6 +140,7 @@ const HomePage = () => {
                 <div className="small-box-list-container">
                     {isSelectFirstState && smallNumberBoxsFirstState.map((smallBox, index) => (
                         <SmallBox
+                            key={index}
                             className={`small-box-first-state-list ${smallBox === '0' ? 'none' : smallBox}`}
                             number={smallBox}
                             onNumberClick={handleNumberClick}
@@ -147,6 +148,7 @@ const HomePage = () => {
                     ))}
                     {isSelectGoalState && smallNumberBoxsGoalState.map((smallBox, index) => (
                         <SmallBox
+                            key={index}
                             className={`small-box-goal-state-list ${smallBox === '0' ? 'none' : smallBox}`}
                             number={smallBox}
                             onNumberClick={handleNumberClick}

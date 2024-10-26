@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import './SolvePage.scss';
 import PausePlayButton from '../../components/PausePlayButton/PausePlayButton';
 import ProgressBar from "../../components/ProgressBar/ProgressBar";
@@ -8,35 +8,44 @@ import { useLocation } from 'react-router-dom';
 
 const SolvePage = () => {
     const [bigBoxState, setBigBoxState] = useState(() => getFromLocalStorage('bigBoxFirstState', []));
-    const [timeDelay, setTimeDelay] = useState(1500);
-    const [intervalId, setIntervalId] = useState(null);
-    const [isRunning, setIsRunning] = useState(false);
-    const [currentStep, setCurrentStep] = useState(0);
-    const [steps, setSteps] = useState([]);
+    const [timeDelay, setTimeDelay] = useState(1200);
+    const [isRun, setIsRun] = useState(true);
+    const [step, setStep] = useState(0);
     const location = useLocation(); // Lấy location từ react-router-dom
     const solution = location.state?.solution || {};
+    const timeoutRef = useRef(null);
+    const [isReload, setIsReload] = useState(false);
 
     useEffect(() => {
-        if (solution.length) {
-            setSteps(solution);
-            executeSteps(solution);
-        }
-    }
-    , [solution]);
-
-    const executeSteps = (steps) => {
-        let i = 0;
-
-        const interval = setInterval(() => {
-            if (i >= steps.length) {
-                clearInterval(interval);
-                return;
+        let i = step;
+        const executeStep = () => {
+            if (i >= solution.length) {
+                setIsReload(true);
+                return; // Dừng khi hoàn thành hoặc khi `isRun` là false
             }
-
-            setBigBoxState(steps[i]);
+            setBigBoxState(solution[i]);
+            setStep(i);
             i++;
-        }, timeDelay);
-    };
+            // Đặt timeout cho bước tiếp theo
+            timeoutRef.current = setTimeout(executeStep, timeDelay);
+        }
+        // Bắt đầu thực hiện các bước nếu `isRun` là true
+        if (isRun) {
+            executeStep();
+        }
+        // Dọn dẹp timeout khi `isRun` thay đổi hoặc component unmount
+        return () => clearTimeout(timeoutRef.current);
+    }, [isRun, timeDelay, step, isReload]);
+
+    const handleReload = () => {
+        setIsReload(false);
+        setStep(0);
+        setBigBoxState(getFromLocalStorage('bigBoxFirstState', []));
+    }
+
+    const handlePausePlay = () => {
+        setIsRun(!isRun);
+    }
 
     const handleSmallNumberClick = () => {
         return;
@@ -49,8 +58,9 @@ const SolvePage = () => {
     return (
         <div className="solve-page">
             <div className="header-solve-page">
-                <ProgressBar totalSteps={solution.length} onStepChange={(step) => console.log(step)} />
-                <PausePlayButton className="pause-play-button" />
+                <ProgressBar className="progress-bar" totalSteps={solution.length} indexStep={step} setIndexStep={setStep} />
+                <div className="number-step">{solution.length}</div>
+                <PausePlayButton className="pause-play-button" isReload={isReload} onReload={handleReload} onClick={handlePausePlay}/>
             </div>
             <div className="big-box-solve-container">
                 <BigBox

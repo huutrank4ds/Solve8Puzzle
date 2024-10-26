@@ -4,20 +4,21 @@ import { useState } from 'react';
 import PauseIcon from '../../assets/icons/pause-icon.png';
 import PlayIcon from '../../assets/icons/play-icon.png';
 
-const PausePlayButton = () => {
+const PausePlayButton = ({isReload, onReload, onClick}) => {
     const [isActive, setIsAcitve] = useState(true);
     const handleOnClick = () => {
         setIsAcitve(!isActive);
+        onClick(isActive);
     };
 
     return (
         <button
             className="pause-play-button"
-            onClick={handleOnClick}
+            onClick={isReload ? onReload : handleOnClick}
         >
             <img
                 className="image-pause-play-button"
-                src={ isActive ? PauseIcon : PlayIcon }
+                src={ (isActive && !isReload) ? PauseIcon : PlayIcon }
                 alt="pause-icon" 
             />
         </button>

@@ -87,7 +87,7 @@ const SolverControls = ({ stateBigBox, handleSolve }) => {
                 />
             </AlgorithmProvider>
             <div
-                class='button-tooltip-container showstep-button-container'
+                className='button-tooltip-container showstep-button-container'
                 onMouseMove={handleMouseMove}
                 onMouseEnter={() => handleMouseEnter('showstep')}
                 onMouseLeave={() => handleMouseLeave('showstep')}
@@ -109,7 +109,7 @@ const SolverControls = ({ stateBigBox, handleSolve }) => {
                 )}
             </div>
             <div
-                class='button-tooltip-container showstep-button-container'
+                className='button-tooltip-container showstep-button-container'
                 onMouseMove={handleMouseMove}
                 onMouseEnter={() => handleMouseEnter('solve')}
                 onMouseLeave={() => handleMouseLeave('solve')}

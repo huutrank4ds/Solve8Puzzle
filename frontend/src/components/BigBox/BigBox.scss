@@ -22,10 +22,12 @@
         user-select: none;
         border: 0.5vh solid #000;
         border-radius: 10px;
+        transition: all 0.5s linear;
     }
     .big-box-number.none {
         background-color: #EFAF77;
         color: rgba(0, 0, 0, 0); 
+        transition: none;
     }
 }
 
